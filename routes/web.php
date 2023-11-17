@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// goi controller vao trong file nay
-use App\Http\Controllers\Admin\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +21,3 @@ Route::get('hello-it0602',function(){
     return "Welcome to learn Laravel";
     // http://localhost:8000/hello-it0602
 });
-
-//http://localhost:8000/login
-Route::get("login",[LoginController::class,"index"]);
-
-// http://localhost:8000/handle-login
-Route::post("handle-login",[LoginController::class,"login"])->name("admin.handle.login");

@@ -7,6 +7,21 @@
         <div class="card-body">
           <h1>Login</h1>
           <p class="text-medium-emphasis">Sign In to your account</p>
+          @if ($errors->any())
+            <div class="alert alert-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+          @if (Session::has("loginFail"))
+            <div class="alert alert-danger">
+              <p>{{ Session::get("loginFail") }}</p>
+            </div>
+          @endif
+
           <form method="post" action="{{ route("admin.handle.login") }}">
             @csrf
             <div class="input-group mb-3"><span class="input-group-text">

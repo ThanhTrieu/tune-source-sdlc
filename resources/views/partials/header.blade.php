@@ -5,15 +5,17 @@
             <svg class="icon icon-lg">
                 <use xlink:href="{{ asset('admin/vendors/@coreui/icons/svg/free.svg#cil-menu') }}"></use>
             </svg>
-        </button><a class="header-brand d-md-none" href="#">
+        </button>
+        <a class="header-brand d-md-none" href="#">
             <svg width="118" height="46" alt="CoreUI Logo">
                 <use xlink:href="{{ asset('admin/assets/brand/coreui.svg#full') }}"></use>
-            </svg></a>
-        <ul class="header-nav d-none d-md-flex">
+            </svg>
+        </a>
+        {{-- <ul class="header-nav d-none d-md-flex">
             <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
-        </ul>
+        </ul> --}}
         <ul class="header-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#">
                     <svg class="icon icon-lg">
@@ -29,8 +31,10 @@
                     </svg></a></li>
         </ul>
         <ul class="header-nav ms-3">
-            <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#"
+            <li class="nav-item dropdown">
+                <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#"
                     role="button" aria-haspopup="true" aria-expanded="false">
+                    <span> Hi: {{ Session::get("usernameAdmin") }} </span>
                     <div class="avatar avatar-md">
                         <img class="avatar-img" src="{{ asset('admin/assets/img/avatars/8.jpg') }}" alt="user@email.com">
                     </div>
@@ -70,13 +74,20 @@
                         <svg class="icon me-2">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-file"></use>
                         </svg> Projects<span class="badge badge-sm bg-primary ms-2">42</span></a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
                         <svg class="icon me-2">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-                        </svg> Lock Account</a><a class="dropdown-item" href="#">
-                        <svg class="icon me-2">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                        </svg> Logout</a>
+                        </svg> Lock Account
+                    </a>
+                    <form method="POST" action="{{ route('admin.logout') }}">
+                        @csrf
+                        <button class="dropdown-item" type="submit">
+                            <svg class="icon me-2">
+                                <use xlink:href="{{ asset('admin/vendors/@coreui/icons/svg/free.svg#cil-account-logout') }}"></use>
+                            </svg> Logout   
+                        </button>
+                    </form>
                 </div>
             </li>
         </ul>
@@ -86,9 +97,9 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb my-0 ms-2">
                 <li class="breadcrumb-item">
-                    <!-- if breadcrumb is single--><span>Home</span>
+                    <!-- if breadcrumb is single--><span>@yield("breadcrumb-item")</span>
                 </li>
-                <li class="breadcrumb-item active"><span>Dashboard</span></li>
+                <li class="breadcrumb-item active"><span>@yield("breadcrumb-item-active")</span></li>
             </ol>
         </nav>
     </div>

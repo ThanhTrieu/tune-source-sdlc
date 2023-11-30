@@ -8,13 +8,13 @@
         </svg>
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-        <li class="nav-item"><a class="nav-link" href="index.html">
+        <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}">
                 <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
                 </svg> Dashboard<span class="badge badge-sm bg-info ms-auto">NEW</span></a></li>
         <li class="nav-title">Managemnents</li>
         <li class="nav-item">
-            <a class="nav-link" href="colors.html">
+            <a class="nav-link" href="{{ route('admin.song') }}">
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('admin/vendors/@coreui/icons/svg/free.svg#cil-drop') }}"></use>
                 </svg>

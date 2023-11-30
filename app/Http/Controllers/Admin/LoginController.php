@@ -15,6 +15,15 @@ class LoginController extends Controller
         return view("login.index");
     }
 
+    public function logout(Request $request)
+    {
+        $request->session()->forget("idUserAdmin");
+        $request->session()->forget("roleIdUserAdmin");
+        $request->session()->forget("emailUserAdmin");
+        $request->session()->forget("usernameAdmin");
+        return redirect()->route('admin.login');
+    }
+
     public function login(PostFormLogin $request)
     {
         $username = $request->username;

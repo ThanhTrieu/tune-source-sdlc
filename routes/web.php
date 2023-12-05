@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('hello-it0602',function(){
-    return "Welcome to learn Laravel";
-    // http://localhost:8000/hello-it0602
-});
+Route::get('/',[HomeController::class, 'index'])->name('fr.home');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class SongController extends Controller
@@ -14,6 +15,7 @@ class SongController extends Controller
 
     public function create()
     {
-        return view("song.add");
+        $categories = Category::all();
+        return view("song.add", ['categories' => $categories]);
     }
 }

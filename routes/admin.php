@@ -21,7 +21,11 @@ Route::group(["middleware" => ["check.admin.login"],"prefix"=> "admin", "as" => 
 
     // songs
     Route::get("songs",[SongController::class, "index"])->name("song");
+
     Route::get("add-song", [SongController::class, "create"])->name("song.add");
-    Route::post("handle-add-song",[SongController::class,"handleCreate"])->name("song.add");
-    
+    Route::post("handle-add-song",[SongController::class,"handleCreate"])->name("song.handle.add");
+
+    Route::get('edit-song/{id}',[SongController::class, 'edit'])->name('song.edit');
+    Route::post('handle-edit/{id}',[SongController::class, 'handleEdit'])->name('handle.edit');
+    Route::post('delete-song/{id}',[SongController::class, 'delete'])->name('song.delete');
 });

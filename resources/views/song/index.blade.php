@@ -8,9 +8,20 @@
     <div class="col-sm-12 col-md-12">
         <h3 class="text-center"> List songs</h3>
         <a class="btn btn-primary" href="{{ route('admin.song.add') }}"> Add Song + </a>
+        <hr/>
         @if (Session::has('add-song'))
             <div class="alert alert-success">
                 {{ Session::get('add-song') }}
+            </div>
+        @endif
+        @if (Session::has('update-song'))
+            <div class="alert alert-success">
+                {{ Session::get('update-song') }}
+            </div>
+        @endif
+        @if (Session::has('delete-song'))
+            <div class="alert alert-info">
+                {{ Session::get('delete-song') }}
             </div>
         @endif
         <hr/>
@@ -23,7 +34,7 @@
                     <th>Poster</th>
                     <th>Price</th>
                     <th>Status</th>
-                    <th colspan="2">Action</th>
+                    <th colspan="2" width="5%">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +49,7 @@
                             </audio>
                         </td>
                         <td>
-                            <img class="img-fulid" src="{{ URL::to('/uploads/images') }}/{{ $item->poster_music }}" />
+                            <img width="30%" class="img-fulid" src="{{ URL::to('/uploads/images') }}/{{ $item->poster_music }}" />
                         </td>
                         <td>
                             {{ number_format($item->price) }}
@@ -46,8 +57,15 @@
                         <td>
                             {{ $item->status == 1 ? 'Active' : 'Deactive' }}
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td>
+                            <a class="btn btn-info btn-sm" href="{{ route('admin.song.edit',['id' => $item->id]) }}">Edit</a>
+                        </td>
+                        <td>
+                            <form method="POST" action="{{ route('admin.song.delete',['id' => $item->id]) }}">
+                                @csrf
+                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

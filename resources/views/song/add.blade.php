@@ -8,7 +8,23 @@
     <div class="col-sm-12 col-md-12">
         <h4 class="text-center"> Add Song</h4>
         <a class="btn btn-info btn-sm" href="{{ route('admin.song') }}"> Back to list song</a>
-        <form method="POST" enctype="multipart/form-data" class="mt-3">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
+        @if (Session::has('add-song'))
+            <div class="alert alert-danger">
+                {{ Session::get('add-song') }}
+            </div>
+        @endif
+
+        <form action="{{ route('admin.song.add') }}" method="POST" enctype="multipart/form-data" class="mt-3">
             @csrf
             <div class="row">
                 <div class="col-sm-12 col-md-6">

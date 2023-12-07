@@ -18,6 +18,10 @@ Route::group(["prefix"=> "admin","as"=>"admin."], function () {
 
 Route::group(["middleware" => ["check.admin.login"],"prefix"=> "admin", "as" => "admin."], function(){
     Route::get("dashboard",[DashboardController::class, "index"])->name("dashboard");
+
+    // songs
     Route::get("songs",[SongController::class, "index"])->name("song");
     Route::get("add-song", [SongController::class, "create"])->name("song.add");
+    Route::post("handle-add-song",[SongController::class,"handleCreate"])->name("song.add");
+    
 });

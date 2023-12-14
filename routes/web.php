@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\DetailController;
+use App\Http\Controllers\Frontend\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +17,6 @@ use App\Http\Controllers\Frontend\HomeController;
 */
 
 Route::get('/',[HomeController::class, 'index'])->name('fr.home');
+Route::get('music/detail/{id}',[DetailController::class, 'index'])->name('fr.detail');
+Route::get('download/{id}', [DetailController::class, 'download'])->name('fr.download.song');
+Route::get('login',[LoginController::class, 'index'])->name('fr.login');
